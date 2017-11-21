@@ -1,0 +1,9 @@
+_jjb:
+  user: "{{ autoff_jenkins_admin.user }}"
+  password: "{{ autoff_jenkins_admin.password }}"
+  dir: /etc/jenkins-job-builder
+  url: http://localhost:8080
+
+_autoff_tools:
+  - git-buildpackage
+  - pristine-tar

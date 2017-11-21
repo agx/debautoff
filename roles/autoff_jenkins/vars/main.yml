@@ -1,0 +1,37 @@
+# public variables
+autoff_jenkins_admin:
+  user: admin
+  password: admin
+
+# private variables
+_autoff_repos:
+  - "deb http://deb.debian.org/debian stretch-backports main"
+
+_autoff_jenkins_pkgs:
+  - name: git
+  - name: lintian
+    default_release: stretch-backports
+
+# vars for dependent roles
+jenkins_admin_username: "{{ autoff_jenkins_admin.user }}"
+jenkins_admin_password: "{{ autoff_jenkins_admin.password }}"
+
+java_packages: ['openjdk-8-jdk']
+
+jenkins_repo_url: deb http://pkg.jenkins-ci.org/debian-stable binary/
+jenkins_repo_key_url: http://pkg.jenkins-ci.org/debian-stable/jenkins-ci.org.key
+jenkins_plugins:
+  # sorted alphabetically
+  - ansicolor
+  - git
+  - greenballs
+  - job-dsl
+  - mailer
+  - mailer
+  - publish-over-ssh
+  - rebuild
+  - workflow-aggregator
+  - ws-cleanup
+jenkins_init_changes:
+  - option: "JENKINS_ARGS"
+    value: "--httpListenAddress=127.0.0.1 --prefix={{ jenkins_url_prefix }}"

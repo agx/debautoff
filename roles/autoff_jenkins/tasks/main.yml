@@ -1,0 +1,35 @@
+- apt_repository:
+    repo: "{{ item }}"
+    state: present
+  with_items:
+    "{{ _autoff_repos }}"
+
+- name: Ensure needed packages are present
+  apt:
+    name: "{{ item.name }}"
+    default_release: "{{ item.default_release|default(omit) }}"
+    state: latest
+  with_items:
+    "{{ _autoff_jenkins_pkgs }}"
+
+- name: Ensure nginx configuration
+  template:
+    src: nginx.conf
+    dest: /etc/nginx/sites-available/default
+  notify: reload nginx
+
+- name: Ensure pbuilder sudoers
+  copy:
+    content: |
+      %pbuilder ALL = (root) SETENV: NOPASSWD: /usr/sbin/cowbuilder, /usr/sbin/pbuilder
+    dest: /etc/sudoers.d/pbuilder
+
+- name: Ensure pbuilder group
+  group:
+    name: pbuilder
+
+- name: Ensure jenkins is in pbuilder group
+  user:
+    name: jenkins
+    group: pbuilder
+    append: yes

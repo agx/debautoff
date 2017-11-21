@@ -1,0 +1,2 @@
+- name: Rebuild Jenkins jobs
+  command: jenkins-jobs --conf {{ _jjb.dir }}/jenkins-jobs.ini update {{ _jjb.dir }}/defs

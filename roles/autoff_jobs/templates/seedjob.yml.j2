@@ -1,0 +1,20 @@
+- job:
+    name: Job-DSL seed job
+    project-type: freestyle
+    description: 'Seed new build jobs from git'
+    disabled: false
+    concurrent: false
+    quiet-period: 0
+    scm:
+      - git:
+          url: https://github.com/agx/debautoff-projects
+    triggers:
+      - pollscm:
+          cron: "* * * * *"
+    builders:
+      - dsl:
+          target: "autoff.groovy"
+          ignore-existing: "false"
+          removed-job-action: "DISABLE"
+          removed-view-action: "DELETE"
+          lookup-strategy: "SEED_JOB"

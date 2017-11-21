@@ -1,0 +1,11 @@
+- name: "Ensure cowbuilder"
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    "{{ _pbuilder_pkgs }}"
+
+- name: Ensure sid chroot
+  shell: git-pbuilder create
+  args:
+    creates: /var/cache/pbuilder/base.cow

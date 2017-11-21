@@ -1,0 +1,33 @@
+- name: Ensure jenkins-job-builder
+  apt:
+    name: jenkins-job-builder
+    state: latest
+
+- name: Ensure directory for job definitions
+  file:
+    dest: "{{ _jjb.dir }}/defs"
+    state: directory
+
+- name: Ensure jenkins-job-builder configuration is present
+  template:
+    src: jenkins-job-builder.conf.j2
+    dest: "{{ _jjb.dir }}/jenkins-jobs.ini"
+    mode: "0640"
+  notify:
+    - Rebuild Jenkins jobs
+
+- name: Ensure initial seed job for job dsl is present
+  template:
+    src: seedjob.yml.j2
+    dest: "{{ _jjb.dir }}/defs/seedjob.yml"
+    mode: "0640"
+  notify:
+    - Rebuild Jenkins jobs
+
+- name: Ensure autoff tools
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    "{{ _autoff_tools }}"
+

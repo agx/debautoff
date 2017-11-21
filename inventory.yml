@@ -1,0 +1,7 @@
+all:
+  children:
+    autoffjenkins:
+      hosts:
+        autoff.wolke.sigxpu.org:
+          ansible_ssh_host: autoff-tunnel
+          ansible_ssh_user: root

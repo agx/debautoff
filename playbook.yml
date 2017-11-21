@@ -1,0 +1,5 @@
+---
+- name: Autoff Jenkins
+  hosts: autoffjenkins
+  roles:
+    - { role: autoff_jobs, tags: autoff_jenkins }

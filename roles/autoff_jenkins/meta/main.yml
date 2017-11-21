@@ -1,0 +1,4 @@
+dependencies:
+  - { role: geerlingguy.jenkins, tags: gerrlingguy.jenkins }
+  - { role: geerlingguy.nginx, tags: gerrlingguy.nginx }
+  - { role: pbuilder, tags: pbuilder }
