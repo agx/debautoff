@@ -35,3 +35,11 @@ jenkins_plugins:
 jenkins_init_changes:
   - option: "JENKINS_ARGS"
     value: "--httpListenAddress=127.0.0.1 --prefix={{ jenkins_url_prefix }}"
+
+pbuilder_hook_dir: /var/lib/jenkins/pbuilder/hooks
+pbuilder_example_hooks:
+  - D80no-man-db-rebuild
+  # Until we have more processing power
+  #- B20autopkgtest
+pbuilder_users:
+  - jenkins

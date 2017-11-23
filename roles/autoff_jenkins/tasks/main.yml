@@ -17,19 +17,3 @@
     src: nginx.conf
     dest: /etc/nginx/sites-available/default
   notify: reload nginx
-
-- name: Ensure pbuilder sudoers
-  copy:
-    content: |
-      %pbuilder ALL = (root) SETENV: NOPASSWD: /usr/sbin/cowbuilder, /usr/sbin/pbuilder
-    dest: /etc/sudoers.d/pbuilder
-
-- name: Ensure pbuilder group
-  group:
-    name: pbuilder
-
-- name: Ensure jenkins is in pbuilder group
-  user:
-    name: jenkins
-    group: pbuilder
-    append: yes
