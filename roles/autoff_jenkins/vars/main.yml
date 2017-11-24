@@ -1,9 +1,3 @@
-# public variables
-autoff_jenkins_admin:
-  user: admin
-  password: admin
-
-# private variables
 _autoff_repos:
   - "deb http://deb.debian.org/debian stretch-backports main"
 

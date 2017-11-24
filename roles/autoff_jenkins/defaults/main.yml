@@ -1,1 +1,5 @@
 autoff_jenkins_server_name: debautoff.sigxcpu.org
+autoff_jenkins_admin:
+  user: admin
+  password: admin
+
