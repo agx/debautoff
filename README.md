@@ -10,4 +10,4 @@ To deploy
     make get_deps
     make
 
-git-buildpackage: http://gbp.sigxcpu.org/
+[git-buildpackage]: http://gbp.sigxcpu.org/
