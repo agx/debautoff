@@ -10,4 +10,8 @@ To deploy
     make get_deps
     make
 
+The Debian source packages built by this jenkins are pulled from
+[debautoff-projects][].
+
 [git-buildpackage]: http://gbp.sigxcpu.org/
+[debautoff-projects]: https://github.com/agx/debautoff-projects
